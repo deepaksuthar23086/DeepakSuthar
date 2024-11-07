@@ -26,6 +26,34 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
+
+	<style>
+        /* Toast styling */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        /* Show the toast */
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
@@ -78,7 +106,7 @@
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row d-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/bg_2.png);">
+	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/bg_1.png);">
 	          		<div class="overlay"></div>
 	          	</div>
 		          <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
@@ -126,7 +154,7 @@
 	                <span class="number" data-number="3">0</span>
 	                <span>Project complete</span>
                 </p>
-                <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+				<p><a  class="btn btn-primary py-3 px-3" onclick="downloadResume()">Download CV</a></p>
               </div>
 	          </div>
 	        </div>
@@ -182,12 +210,39 @@
     		</div>
     		<div class="row justify-content-center mt-5">
     			<div class="col-md-6 text-center ftco-animate">
-    				<p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
+    				<p><a class="btn btn-primary py-3 px-3" onclick="downloadResume()">Download CV</a></p>
     			</div>
     		</div>
     	</div>
     </section>
 
+	  <!-- JavaScript function for downloading the resume -->
+	  <script>
+        function downloadResume() {
+            // Show "Download started!" toast message
+            showToast("Download started!");
+
+            // Set the path to the resume file
+            // window.location.href = 'resume.pdf';
+
+            // Simulate download complete message after 3 seconds
+            setTimeout(function() {
+                showToast("Download complete!");
+            }, 3000);
+        }
+
+        function showToast(message) {
+            var toast = document.getElementById("toast");
+            toast.textContent = message; // Set the message for the toast
+            toast.classList.add("show");
+
+            // Hide the toast after 2 seconds
+            setTimeout(function() {
+                toast.classList.remove("show");
+            }, 2000);
+        }
+    </script>
+	<div id="toast">Resume download started!</div>
     <section class="ftco-section" id="services-section">
     	<div class="container">
     		<div class="row justify-content-center py-5 mt-5">
@@ -539,14 +594,10 @@
 			<span class="position">Emizen Tech Pvt. Ltd</span>
 			<ul>
 				<li>Received the Brilliant Beginner Award at Emizen Tech Pvt. Ltd for contributions to project development and team collaboration.</li>
-				<!-- Add more achievements here if needed -->
-			</ul>
-		</div>
-		<ul>
-			<li>Received the Brilliant Beginner Award at Emizen Tech Pvt. Ltd for contributions to project development and team collaboration.</li>
 			<li>Completed a significant project ahead of schedule, resulting in positive client feedback.</li>
 			<li>Contributed to team knowledge sharing sessions, enhancing overall project quality.</li>
-		</ul>
+			</ul>
+		</div>
 		
       </div>
     </section>
@@ -665,7 +716,7 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="100">0</strong>
+                <strong class="number" data-number="1">0</strong>
                 <span>Awards</span>
               </div>
             </div>
@@ -673,7 +724,7 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="1200">0</strong>
+                <strong class="number" data-number="3">0</strong>
                 <span>Complete Projects</span>
               </div>
             </div>
@@ -681,7 +732,7 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="1200">0</strong>
+                <strong class="number" data-number="3">0</strong>
                 <span>Happy Customers</span>
               </div>
             </div>
@@ -689,7 +740,7 @@
           <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text">
-                <strong class="number" data-number="500">0</strong>
+                <strong class="number" data-number="5">0</strong>
                 <span>Cups of coffee</span>
               </div>
             </div>
@@ -783,7 +834,7 @@
           </div>
 
           <div class="col-md-6 d-flex">
-          	<div class="img" style="background-image: url(images/about.jpg);"></div>
+          	<div class="img" style="background-image: url(images/about.png);"></div>
           </div>
         </div>
       </div>
@@ -817,11 +868,16 @@
             <div class="ftco-footer-widget mb-4 ml-md-4">
               <h2 class="ftco-heading-2">Links</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Services</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Projects</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Contact</a></li>
+				<li><a href="#home-section"><span class="icon-long-arrow-right mr-2"></span>Home</span></a></li>
+				<li><a href="#about-section"><span class="icon-long-arrow-right mr-2"></span>About</span></a></li>
+				<li><a href="#resume-section"><span class="icon-long-arrow-right mr-2"></span>Resume</span></a></li>
+				<li><a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Services</span></a></li>
+				<li><a href="#skills-section"><span class="icon-long-arrow-right mr-2"></span>Skills</span></a></li>
+				<li><a href="#achievements-section"><span class="icon-long-arrow-right mr-2"></span>Achievements</span></a></li>
+				<li><a href="#certification-section"><span class="icon-long-arrow-right mr-2"></span>Certification</span></a></li>
+				<!-- <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li> -->
+				<!-- <li class="nav-item"><a href="#blog-section" class="nav-link"><span>My Blog</span></a></li> -->
+				<li><a href="#contact-section"><span class="icon-long-arrow-right mr-2"></span>Contact</span></a></li>
               </ul>
             </div>
           </div>
@@ -830,10 +886,10 @@
               <h2 class="ftco-heading-2">Services</h2>
               <ul class="list-unstyled">
 
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Android Development</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>IOS Development</a></li>
-				<li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Web Design</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Web Development</a></li>
+                <li><a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Android Development</a></li>
+                <li><a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>IOS Development</a></li>
+				<li><a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Web Design</a></li>
+                <li><a href="#services-section"><span class="icon-long-arrow-right mr-2"></span>Web Development</a></li>
               </ul>
             </div>
           </div>
@@ -843,8 +899,12 @@
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li><span class="icon icon-map-marker"></span><span class="text">Jaipur, Rajasthan, India</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91-8386077429</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">suthardeepak23086@gmail.com</span></a></li>
+	                <li><span class="icon icon-phone"></span><span class="text">+91-8386077429</span></li>
+					<li style="display: flex; align-items: center;">
+						<span class="icon icon-envelope"></span>
+						<span class="text">suthardeepak23086@gmail.com</span>
+					</li>
+ 					
 	              </ul>
 	            </div>
             </div>
